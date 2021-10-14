@@ -545,3 +545,287 @@ void CCalculadoraDlg::OnBnClickedClearButton()
 	UpdateData(FALSE);
 
 }
+
+void CCalculadoraDlg::OnBnClickedBinCheck()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (m_binario == TRUE) {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(FALSE);
+		m_decimal = FALSE;
+		m_hexadecimal = FALSE;
+		CString MyCadena;
+		MyCadena.Format(L"%?", m_resultado_ent);
+		m_resultado = MyCadena;
+	}
+	else {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(TRUE);
+	}
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedAButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "A";
+		m_resultado_ent = A;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + A;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+
+void CCalculadoraDlg::OnBnClickedBButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "B";
+		m_resultado_ent = B;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + B;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedCButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "C";
+		m_resultado_ent = C;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + C;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedDButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "D";
+		m_resultado_ent = D;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + D;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedEButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "E";
+		m_resultado_ent = E;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + E;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedFButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (conteo == 0) {
+		m_resultado = "F";
+		m_resultado_ent = F;
+		op1 = m_resultado_ent;
+	}
+	else {
+		op2 = m_resultado_ent * 10; //op2 es el 1 convertido en decenas
+		op1 = op2 + F;
+		m_resultado_ent = op1;
+		//codigo para mandar a imprimir resultado en EDIT_BOX como CString
+		CString MyCadena;
+		MyCadena.Format(L"%d", op1);
+		m_resultado = MyCadena;
+	}
+	conteo++;
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedDecCheck()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (m_decimal == TRUE) {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(FALSE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(FALSE);
+		m_binario = FALSE;
+		m_hexadecimal = FALSE;
+	}
+	else {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(TRUE);
+	}
+	UpdateData(FALSE);
+}
+
+
+void CCalculadoraDlg::OnBnClickedHexCheck()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	UpdateData(TRUE);
+	if (m_hexadecimal == TRUE) {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(TRUE);
+		m_binario = FALSE;
+		m_decimal = FALSE;
+		CString MyCadena;
+		MyCadena.Format(L"%X", m_resultado_ent);
+		m_resultado = MyCadena;
+	
+	}
+	else {
+		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_1_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_2_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_3_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_4_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_5_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_6_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_7_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_8_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_9_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_A_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_B_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_C_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_D_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_E_BUTTON)->EnableWindow(TRUE);
+		GetDlgItem(IDC_F_BUTTON)->EnableWindow(TRUE);
+	}
+	
+	UpdateData(FALSE);
+}
