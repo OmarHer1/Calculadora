@@ -1,4 +1,3 @@
-
 // CalculadoraDlg.cpp: archivo de implementación
 //
 
@@ -54,7 +53,9 @@ CCalculadoraDlg::CCalculadoraDlg(CWnd* pParent /*= nullptr*/)
 	: CDialogEx(IDD_CALCULADORA_DIALOG, pParent)
 	, m_resultado(_T(""))
 	, m_resultado_ent(0)
-	, m_base(_T(""))
+	, m_binario(FALSE)
+	, m_decimal(FALSE)
+	, m_hexadecimal(FALSE)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -64,7 +65,9 @@ void CCalculadoraDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_RESULT_EDIT, m_resultado);
 	DDX_Text(pDX, IDC_RESULT_STATIC, m_resultado_ent);
-	DDX_CBString(pDX, IDC_BASE_COMBO, m_base);
+	DDX_Check(pDX, IDC_BIN_CHECK, m_binario);
+	DDX_Check(pDX, IDC_DEC_CHECK, m_decimal);
+	DDX_Check(pDX, IDC_HEX_CHECK, m_hexadecimal);
 }
 
 BEGIN_MESSAGE_MAP(CCalculadoraDlg, CDialogEx)
@@ -82,11 +85,20 @@ BEGIN_MESSAGE_MAP(CCalculadoraDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_8_BUTTON, &CCalculadoraDlg::OnBnClicked8Button)
 	ON_BN_CLICKED(IDC_9_BUTTON, &CCalculadoraDlg::OnBnClicked9Button)
 	ON_BN_CLICKED(IDC_SUMA_BUTTON, &CCalculadoraDlg::OnBnClickedSumaButton)
-	ON_BN_CLICKED(IDC_MULT_BUTTON, &CCalculadoraDlg::OnBnClickedMultButton)
 	ON_BN_CLICKED(IDC_RESTA_BUTTON, &CCalculadoraDlg::OnBnClickedRestaButton)
-	ON_BN_CLICKED(IDC_DIV_BUTTON, &CCalculadoraDlg::OnBnClickedDivButton)
+	ON_BN_CLICKED(IDC_MULT_BUTTON, &CCalculadoraDlg::OnBnClickedMultButton)
+	ON_BN_CLICKED(IDC_DIVI_BUTTON, &CCalculadoraDlg::OnBnClickedDiviButton)
 	ON_BN_CLICKED(IDC_IGUAL_BUTTON, &CCalculadoraDlg::OnBnClickedIgualButton)
 	ON_BN_CLICKED(IDC_CLEAR_BUTTON, &CCalculadoraDlg::OnBnClickedClearButton)
+	ON_BN_CLICKED(IDC_BIN_CHECK, &CCalculadoraDlg::OnBnClickedBinCheck)
+	ON_BN_CLICKED(IDC_A_BUTTON, &CCalculadoraDlg::OnBnClickedAButton)
+	ON_BN_CLICKED(IDC_B_BUTTON, &CCalculadoraDlg::OnBnClickedBButton)
+	ON_BN_CLICKED(IDC_C_BUTTON, &CCalculadoraDlg::OnBnClickedCButton)
+	ON_BN_CLICKED(IDC_D_BUTTON, &CCalculadoraDlg::OnBnClickedDButton)
+	ON_BN_CLICKED(IDC_E_BUTTON, &CCalculadoraDlg::OnBnClickedEButton)
+	ON_BN_CLICKED(IDC_F_BUTTON, &CCalculadoraDlg::OnBnClickedFButton)
+	ON_BN_CLICKED(IDC_DEC_CHECK, &CCalculadoraDlg::OnBnClickedDecCheck)
+	ON_BN_CLICKED(IDC_HEX_CHECK, &CCalculadoraDlg::OnBnClickedHexCheck)
 END_MESSAGE_MAP()
 
 
@@ -181,13 +193,21 @@ int conteo; // almacena el numero(#) de clicks para un solo operador numerico
 int op1; //backup del numero generado
 int op2;  //entero que alamcena de forma local en cada función el resultado
 int codigo_de_operacion;
-	//backuo de variables temporales
+//backuo de variables temporales
 int op1Suma;
 int op2Suma;
 int resultadoSuma;
+int A = 10;
+int B = 11;
+int C = 12;
+int D = 13;
+int E = 14;
+int F = 15;
+
 
 void CCalculadoraDlg::OnBnClicked0Button()
 {
+	// TODO: Agregue aquí su código de controlador de notificación de control
 	UpdateData(TRUE);
 	if (conteo == 0) {
 		m_resultado = "0";
@@ -202,8 +222,9 @@ void CCalculadoraDlg::OnBnClicked0Button()
 		MyCadena.Format(L"%d", op1);
 		m_resultado = MyCadena;
 	}
-	
+
 	UpdateData(FALSE);
+
 }
 
 
@@ -227,6 +248,7 @@ void CCalculadoraDlg::OnBnClicked1Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -250,6 +272,7 @@ void CCalculadoraDlg::OnBnClicked2Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -273,6 +296,7 @@ void CCalculadoraDlg::OnBnClicked3Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -296,6 +320,7 @@ void CCalculadoraDlg::OnBnClicked4Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -319,6 +344,7 @@ void CCalculadoraDlg::OnBnClicked5Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -342,6 +368,7 @@ void CCalculadoraDlg::OnBnClicked6Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -365,6 +392,7 @@ void CCalculadoraDlg::OnBnClicked7Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -388,6 +416,7 @@ void CCalculadoraDlg::OnBnClicked8Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -411,6 +440,7 @@ void CCalculadoraDlg::OnBnClicked9Button()
 	}
 	conteo++;
 	UpdateData(FALSE);
+
 }
 
 
@@ -436,27 +466,6 @@ void CCalculadoraDlg::OnBnClickedSumaButton()
 }
 
 
-void CCalculadoraDlg::OnBnClickedMultButton()
-{
-	// TODO: Agregue aquí su código de controlador de notificación de control
-	codigo_de_operacion = 3; // la suma = + es la opracion 1
-	//backuo de variables temporales
-	op1Suma = op1;
-	op2Suma = op2;
-	resultadoSuma = m_resultado_ent;
-	//borrado de variables 
-	conteo = 0;
-	op1 = 0;
-	op2 = 0;
-	m_resultado_ent = 0;
-
-	CString MyCadena;
-	MyCadena.Format(L"%d x", resultadoSuma);
-	m_resultado = MyCadena;
-	UpdateData(FALSE);
-}
-
-
 void CCalculadoraDlg::OnBnClickedRestaButton()
 {
 	// TODO: Agregue aquí su código de controlador de notificación de control
@@ -475,10 +484,33 @@ void CCalculadoraDlg::OnBnClickedRestaButton()
 	MyCadena.Format(L"%d -", resultadoSuma);
 	m_resultado = MyCadena;
 	UpdateData(FALSE);
+
 }
 
 
-void CCalculadoraDlg::OnBnClickedDivButton()
+void CCalculadoraDlg::OnBnClickedMultButton()
+{
+	// TODO: Agregue aquí su código de controlador de notificación de control
+	codigo_de_operacion = 3; // la suma = + es la opracion 1
+	//backuo de variables temporales
+	op1Suma = op1;
+	op2Suma = op2;
+	resultadoSuma = m_resultado_ent;
+	//borrado de variables 
+	conteo = 0;
+	op1 = 0;
+	op2 = 0;
+	m_resultado_ent = 0;
+
+	CString MyCadena;
+	MyCadena.Format(L"%d x", resultadoSuma);
+	m_resultado = MyCadena;
+	UpdateData(FALSE);
+
+}
+
+
+void CCalculadoraDlg::OnBnClickedDiviButton()
 {
 	// TODO: Agregue aquí su código de controlador de notificación de control
 	codigo_de_operacion = 4; // la suma = + es la opracion 1
@@ -496,6 +528,7 @@ void CCalculadoraDlg::OnBnClickedDivButton()
 	MyCadena.Format(L"%d /", resultadoSuma);
 	m_resultado = MyCadena;
 	UpdateData(FALSE);
+
 }
 
 
@@ -526,6 +559,7 @@ void CCalculadoraDlg::OnBnClickedIgualButton()
 	MyCadena.Format(L"%d", m_resultado_ent);
 	m_resultado = MyCadena;
 	UpdateData(FALSE);
+
 }
 
 
@@ -545,6 +579,7 @@ void CCalculadoraDlg::OnBnClickedClearButton()
 	UpdateData(FALSE);
 
 }
+
 
 void CCalculadoraDlg::OnBnClickedBinCheck()
 {
@@ -569,9 +604,26 @@ void CCalculadoraDlg::OnBnClickedBinCheck()
 		GetDlgItem(IDC_F_BUTTON)->EnableWindow(FALSE);
 		m_decimal = FALSE;
 		m_hexadecimal = FALSE;
-		CString MyCadena;
-		MyCadena.Format(L"%?", m_resultado_ent);
-		m_resultado = MyCadena;
+	
+		//Agrege aqui su codigo de controlador de notificación de control
+		int a[10], n, i;
+		//actualizamos el numero a convertir 
+		UpdateData(TRUE);
+		n = m_resultado_ent;
+		for (i = 0; n > 0; i++) {
+			a[i] = n % 2;
+			n = n / 2;
+		}
+		//limpiar cadena y generar ciclo para presentar dato convertido
+		m_resultado = "";
+		UpdateData(FALSE);
+		for (i = i - 1; i >= 0; i--) {
+			m_resultado_ent = a[i];
+			CString MyCadena;
+			MyCadena.Format(L"%d", m_resultado_ent);
+			m_resultado += MyCadena;
+		}
+
 	}
 	else {
 		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
@@ -593,6 +645,7 @@ void CCalculadoraDlg::OnBnClickedBinCheck()
 	}
 	UpdateData(FALSE);
 }
+
 
 
 void CCalculadoraDlg::OnBnClickedAButton()
@@ -757,6 +810,9 @@ void CCalculadoraDlg::OnBnClickedDecCheck()
 		GetDlgItem(IDC_F_BUTTON)->EnableWindow(FALSE);
 		m_binario = FALSE;
 		m_hexadecimal = FALSE;
+		CString MyCadena;
+		MyCadena.Format(L"%d", m_resultado_ent);
+		m_resultado = MyCadena;
 	}
 	else {
 		GetDlgItem(IDC_0_BUTTON)->EnableWindow(TRUE);
@@ -829,3 +885,4 @@ void CCalculadoraDlg::OnBnClickedHexCheck()
 	
 	UpdateData(FALSE);
 }
+
